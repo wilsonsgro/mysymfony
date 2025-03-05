@@ -2,19 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\CustomerEntityRepository;
+use App\Repository\TestEntityRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CustomerEntityRepository::class)]
-class CustomerEntity
+#[ORM\Entity(repositoryClass: TestEntityRepository::class)]
+class TestEntity
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name:"entity_id", type:"integer")]
-    private $id;
+    #[ORM\Column]
+    private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private $email;
+    private ?string $email = null;
 
     public function getId(): ?int
     {
@@ -26,7 +26,7 @@ class CustomerEntity
         return $this->email;
     }
 
-    public function setEmail(?string $email): self
+    public function setEmail(string $email): static
     {
         $this->email = $email;
 
